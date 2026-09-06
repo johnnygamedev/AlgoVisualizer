@@ -35,8 +35,8 @@ public:
 			draw_array();
 			m_compared.clear();
 			/*bubble_step();*/
-			/*selection_step();*/
-			insertion_step();
+			selection_step();
+			/*insertion_step();*/
 			EndDrawing();
 
 			ClearBackground(BLACK);
@@ -90,7 +90,8 @@ public:
 
 			i++;
 
-			if (i >= MAX_AMOUNT - 1 - m_pass) { i = 0;m_pass++;
+			if (i >= MAX_AMOUNT - 1 - m_pass) {
+				i = 0;m_pass++;
 				if (m_pass >= MAX_AMOUNT - 1) {
 					m_done = true;
 					break;
@@ -139,13 +140,13 @@ public:
 	}
 
 
-		
-	
-	
 
-private: 
-	
-	const int WIDTH{ 1000};
+
+
+
+private:
+
+	const int WIDTH{ 1000 };
 	const int HEIGHT{ 800 };
 	const int MAX_AMOUNT{ 100 };
 	vector<float> m_to_sort{};
@@ -155,6 +156,44 @@ private:
 	int m_right = 0;
 	int m_current_idx{ 0 };
 	set<size_t> m_compared{};
+
+	bool m_selecting{ true };
+	SortAlgo m_algo{ SortAlgo::Selection };
+	int m_bubble_i{ 0 };
+	int m_insert_i{ -1 };
+	float m_insert_key{ 0.0f };
+	bool m_shifting{ false };
+
+	const int BTN_W{ 180 };
+	const int BTN_H{ 45 };
+	const int BTN_Y{ 15 };
+
+	Rectangle btn_selection{ 10.0f,(float)BTN_Y, (float)BTN_W,(float)BTN_H };
+	Rectangle btn_bubble{ 200.0f,(float)BTN_Y, (float)BTN_W,(float)BTN_H };
+	Rectangle btn_insertion{ 390.0f,(float)BTN_Y, (float)BTN_W,(float)BTN_H };
+	Rectangle btn_reset{ 580.0f,(float)BTN_Y, (float)BTN_W,(float)BTN_H };
+
+	void generate() {
+		m_to_sort.clear();
+		m_done = false;	
+		m_pass = 0;
+		m_right = 0;
+		m_bubble_i = 0;
+		m_insert_i = 0;
+		m_insert_key = 0.0f;
+		m_shifting = false;
+		m_compared.clear();
+
+		mt19937_64 gen{};
+		uniform_real_distribution<float> range{ 0.0f,1.0f };
+		for (size_t i{}; i < MAX_AMOUNT; i++) {
+			m_to_sort.push_back(range(gen));
+		}
+	}
+
+
+
+	
 };
 
 	int main() {
