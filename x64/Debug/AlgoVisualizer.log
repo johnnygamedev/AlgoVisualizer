@@ -1,6 +1,6 @@
 ﻿  visualizer.cpp
-D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(49,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(49,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(49,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(49,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(50,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(50,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(50,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(50,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   AlgoVisualizer.vcxproj -> D:\C++ Journey\AlgoVisualizer\x64\Debug\AlgoVisualizer.exe

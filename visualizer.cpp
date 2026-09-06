@@ -35,6 +35,7 @@ public:
 			draw_array();
 			m_compared.clear();
 			bubble_step();
+			/*selection_step();*/
 			EndDrawing();
 
 			ClearBackground(BLACK);
@@ -74,21 +75,35 @@ public:
 		right++;
 	}
 
+
 	void bubble_step() {
+		static int i = 0;
 		if (m_pass >= MAX_AMOUNT - 1) { m_done = true; return; };
 
-		bool swapped = false;
+		m_compared.clear();
 
-		for (int i = 0; i < MAX_AMOUNT - 1 - m_pass; i++) {
-			m_compared.emplace(i);
+		for (int step = 0; step < MAX_AMOUNT; step++) {
 			if (m_to_sort[i] > m_to_sort[i + 1]) {
 				swap(m_to_sort[i], m_to_sort[i + 1]);
-				swapped = true;
+			}
+
+			i++;
+
+			if (i >= MAX_AMOUNT - 1 - m_pass) { i = 0;m_pass++;
+				if (m_pass >= MAX_AMOUNT - 1) {
+					m_done = true;
+					break;
+				}
 			}
 		}
-		if (!swapped) m_done = true;
-		m_pass++;
+		m_compared.emplace(i);
+		m_compared.emplace(i + 1);
 	}
+
+
+		
+	
+	
 
 private: 
 	
