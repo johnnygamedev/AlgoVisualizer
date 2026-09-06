@@ -1,2 +1,6 @@
 ﻿  visualizer.cpp
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(37,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(37,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(37,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\C++ Journey\AlgoVisualizer\AlgoVisualizer\visualizer.cpp(37,26): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   AlgoVisualizer.vcxproj -> D:\C++ Journey\AlgoVisualizer\x64\Debug\AlgoVisualizer.exe

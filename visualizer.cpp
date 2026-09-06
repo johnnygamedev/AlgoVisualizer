@@ -23,11 +23,21 @@ public:
 
 
 			BeginDrawing();
+			draw_array();
 			EndDrawing();
 
 			ClearBackground(BLACK);
 		}
 		
+	}
+	void draw_array() {
+		float x_step{ WIDTH / static_cast<float>(MAX_AMOUNT) };
+		for (size_t i{}; i < MAX_AMOUNT; i++) {
+			float height_rect{ m_to_sort[i] * HEIGHT };
+			DrawRectangle( x_step * i, HEIGHT - height_rect, x_step, height_rect, WHITE);
+
+		}
+	
 	}
 
 private: 
