@@ -4,6 +4,12 @@
 #include <set>
 
 using namespace std;
+
+enum class SortAlgo {
+	Selection,
+	Bubble,
+	Insertion
+};
 class AlgoVisualizer {
 public: 
 	AlgoVisualizer() {
