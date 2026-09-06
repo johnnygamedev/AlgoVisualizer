@@ -35,7 +35,8 @@ public:
 		size_t x_step{ WIDTH / static_cast<size_t>(MAX_AMOUNT) };
 		for (size_t i{}; i < MAX_AMOUNT; i++) {
 			float height_rect{ m_to_sort[i] * HEIGHT * 0.9f };
-			DrawRectangle( x_step * i, HEIGHT - height_rect, x_step, height_rect, WHITE);
+			auto colour{m_done ? PURPLE : WHITE};
+			DrawRectangle( x_step * i, HEIGHT - height_rect, x_step, height_rect, colour);
 
 		}
 	
@@ -43,6 +44,11 @@ public:
 
 	void sort_step() {
 		static int right{ 0 };
+
+		if (right >= MAX_AMOUNT) {
+			m_done = true;
+			return;
+		}
 
 		size_t min_idx{ static_cast<size_t>(right) };
 		for (size_t i{ static_cast<size_t>(right) }; i < MAX_AMOUNT;i++) {
@@ -63,6 +69,8 @@ private:
 	const int HEIGHT{ 800 };
 	const int MAX_AMOUNT{ 100 };
 	vector<float> m_to_sort{};
+
+	bool m_done{};
 };
 
 	int main() {
