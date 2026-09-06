@@ -24,6 +24,7 @@ public:
 
 			BeginDrawing();
 			draw_array();
+			sort_step();
 			EndDrawing();
 
 			ClearBackground(BLACK);
@@ -31,18 +32,34 @@ public:
 		
 	}
 	void draw_array() {
-		float x_step{ WIDTH / static_cast<float>(MAX_AMOUNT) };
+		size_t x_step{ WIDTH / static_cast<size_t>(MAX_AMOUNT) };
 		for (size_t i{}; i < MAX_AMOUNT; i++) {
-			float height_rect{ m_to_sort[i] * HEIGHT };
+			float height_rect{ m_to_sort[i] * HEIGHT * 0.9f };
 			DrawRectangle( x_step * i, HEIGHT - height_rect, x_step, height_rect, WHITE);
 
 		}
 	
 	}
 
+	void sort_step() {
+		static int right{ 0 };
+
+		size_t min_idx{ static_cast<size_t>(right) };
+		for (size_t i{ static_cast<size_t>(right) }; i < MAX_AMOUNT;i++) {
+			if (m_to_sort[min_idx] > m_to_sort[i])
+				min_idx = i;
+		}
+
+		auto temp{ m_to_sort[right] };
+		m_to_sort[right] = m_to_sort[min_idx];
+		m_to_sort[min_idx] = temp;
+
+		right++;
+	}
+
 private: 
 	
-	const int WIDTH{ 1600};
+	const int WIDTH{ 1000};
 	const int HEIGHT{ 800 };
 	const int MAX_AMOUNT{ 100 };
 	vector<float> m_to_sort{};
