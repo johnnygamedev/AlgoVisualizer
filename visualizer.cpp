@@ -16,7 +16,7 @@ public:
 		InitWindow(WIDTH, HEIGHT, "VISUALIZER");
 
 		//i like having it lower to make it easier to see
-		SetTargetFPS(60);
+		SetTargetFPS(30);
 
 		mt19937_64 gen{};
 		uniform_real_distribution<float> range{ 0.0f, 1.0f };
@@ -34,8 +34,9 @@ public:
 			BeginDrawing();
 			draw_array();
 			m_compared.clear();
-			bubble_step();
+			/*bubble_step();*/
 			/*selection_step();*/
+			insertion_step();
 			EndDrawing();
 
 			ClearBackground(BLACK);
@@ -100,6 +101,43 @@ public:
 		m_compared.emplace(i + 1);
 	}
 
+	void insertion_step() {
+		if (m_right >= MAX_AMOUNT) {
+			m_done = true;
+			return;
+		}
+
+		if (m_right == 0) {
+			m_right = 1;
+		}
+
+
+		static int i = -1;
+		static float key = 0.0f;
+		static bool shifting = false;
+
+		m_compared.clear();
+
+		if (!shifting) {
+			key = m_to_sort[m_right];
+			i = m_right - 1;
+			shifting = true;
+		}
+
+		if (i >= 0 && m_to_sort[i] > key) {
+			m_to_sort[i + 1] = m_to_sort[i];
+			m_compared.emplace(i);
+			m_compared.emplace(i + 1);
+			i--;
+		}
+		else {
+			m_to_sort[i + 1] = key;
+			m_compared.emplace(i + 1);
+			shifting = false;
+			m_right++;
+		}
+	}
+
 
 		
 	
@@ -109,11 +147,12 @@ private:
 	
 	const int WIDTH{ 1000};
 	const int HEIGHT{ 800 };
-	const int MAX_AMOUNT{ 500 };
+	const int MAX_AMOUNT{ 100 };
 	vector<float> m_to_sort{};
 
 	bool m_done{};
 	int m_pass = 0;
+	int m_right = 0;
 	int m_current_idx{ 0 };
 	set<size_t> m_compared{};
 };
