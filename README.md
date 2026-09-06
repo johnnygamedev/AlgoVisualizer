@@ -2,7 +2,7 @@
 A quick sorting visualizer I built using C++ and Raylib. I wanted to see how sorting algorithms actually work step-by-step(havent done them in awhile so wanted to get back on the wagon for algorithms with the simple ones), so I rewrote the standard loops to update the screen frame-by-frame instead of finishing instantly.
 
 # Key Features
-Step-by-Step Sorting: Rewrote Bubble, Selection, and Insertion sort loops into step functions so you can watch them move array items in real time.
+Step-by-Step Sorting: Bubble, Selection, and Insertion sort loops into step functions so you can watch them move array items in real time.
 
 Color Tracking: Uses Blue to show elements being actively compared or moved, White for unsorted values, and turns Purple when the array is fully sorted.
 
