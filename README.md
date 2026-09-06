@@ -13,5 +13,5 @@ Randomized Arrays: Uses standard C++ random tools (std::mt19937_64) to spawn a n
 # Tech Used
 Language: C++
 
-# Graphics: Raylib
+Graphics: Raylib
 
