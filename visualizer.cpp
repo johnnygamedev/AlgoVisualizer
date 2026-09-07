@@ -22,18 +22,37 @@ public:
 	void main() {
 		while (!WindowShouldClose())
 		{
-			PollInputEvents();
-
+			
+			handle_clicks();
 
 			BeginDrawing();
-			ClearBackground(BLACK);
+			
+
 			draw_buttons();
 			draw_array();
+
 			m_compared.clear();
+
 			if (!m_selecting) sort_step();
+			else {
+				DrawText("WAITING", 10, HEIGHT - 30, 20, RED);
+			    }
+			ClearBackground(BLACK);
 			EndDrawing();
 		}
 
+	}
+	void handle_clicks() {
+		Vector2 mouse = GetMousePosition();
+	
+		bool clicked = IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
+
+		if (clicked) {
+			if (CheckCollisionPointRec(mouse, btn_selection)) { m_algo = SortAlgo::Selection; m_selecting = false; generate(); }
+			else if (CheckCollisionPointRec(mouse, btn_bubble)) { m_algo = SortAlgo::Bubble;    m_selecting = false; generate(); }
+			else if (CheckCollisionPointRec(mouse, btn_insertion)) { m_algo = SortAlgo::Insertion; m_selecting = false; generate(); }
+			else if (CheckCollisionPointRec(mouse, btn_reset)) { m_selecting = false; generate(); }
+		}
 	}
 
 	void sort_step() {
@@ -46,15 +65,16 @@ public:
 	}
 
 	bool is_hovered(Rectangle btn) {
-
 		Vector2 mouse = GetMousePosition();
-
 		return CheckCollisionPointRec(mouse, btn);
 	}
 
-	bool is_clicked(Rectangle btn) {
-		return is_hovered(btn) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
+	
+	bool is_clicked(Rectangle btn, Vector2 mouse, bool clicked) {
+		return CheckCollisionPointRec(mouse, btn) && clicked;
 	}
+
+	
 
 	void draw_button(Rectangle btn, const char* label, bool active) {
 		Color bg = active ? BLUE : is_hovered(btn) ? DARKGRAY : GRAY;
@@ -67,17 +87,16 @@ public:
 
 	void draw_buttons() {
 		draw_button(btn_selection, "Selection", m_algo == SortAlgo::Selection);
-
 		draw_button(btn_bubble, "Bubble", m_algo == SortAlgo::Bubble);
 		draw_button(btn_insertion, "Insertion", m_algo == SortAlgo::Insertion);
 		draw_button(btn_reset, "Reset", false);
 
-		if (is_clicked(btn_selection)) { TraceLog(LOG_INFO, "Selection clicked!"), m_algo = SortAlgo::Selection; m_selecting = false; generate(); }
-		if (is_clicked(btn_bubble)) { m_algo = SortAlgo::Bubble; m_selecting = false; generate(); }
-		if (is_clicked(btn_insertion)) { m_algo = SortAlgo::Insertion; m_selecting = false; generate(); }
-		if (is_clicked(btn_reset)) { m_selecting = false; generate(); }
+		//if (is_clicked(btn_selection)) { TraceLog(LOG_INFO, "Selection clicked!"), m_algo = SortAlgo::Selection; m_selecting = false; generate(); }
+		//if (is_clicked(btn_bubble)) { m_algo = SortAlgo::Bubble; m_selecting = false; generate(); }
+		//if (is_clicked(btn_insertion)) { m_algo = SortAlgo::Insertion; m_selecting = false; generate(); }
+		//if (is_clicked(btn_reset)) { m_selecting = false; generate(); }
 
-		if (m_done) DrawText("SORTED!", WIDTH - 120, BTN_Y + 10, 24, PURPLE);
+		/*if (m_done) DrawText("SORTED!", WIDTH - 120, BTN_Y + 10, 24, PURPLE);*/
 	}
 
 
